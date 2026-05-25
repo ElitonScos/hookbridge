@@ -1,0 +1,13 @@
+FROM golang:1.23-alpine AS builder
+WORKDIR /app
+RUN apk add --no-cache git
+COPY processor/go.mod ./
+RUN go mod download
+COPY processor/ .
+RUN go mod tidy && CGO_ENABLED=0 go build -o processor ./cmd/processor
+
+FROM alpine:3.19
+WORKDIR /app
+RUN apk add --no-cache ca-certificates
+COPY --from=builder /app/processor .
+CMD ["./processor"]

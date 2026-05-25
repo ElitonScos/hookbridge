@@ -1,0 +1,11 @@
+FROM php:8.2-cli-alpine
+WORKDIR /app
+RUN apk add --no-cache postgresql-dev $PHPIZE_DEPS \
+    && docker-php-ext-install pdo pdo_pgsql \
+    && apk del $PHPIZE_DEPS
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY receiver/composer.json ./
+RUN composer install --no-dev --no-scripts --no-interaction --prefer-dist
+COPY receiver/ .
+EXPOSE 8002
+CMD ["php", "-S", "0.0.0.0:8002", "-t", "public"]

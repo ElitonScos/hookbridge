@@ -1,0 +1,7 @@
+.env
+vendor/
+receiver/vendor/
+processor/processor
+__pycache__/
+*.pyc
+*.log
