@@ -1,6 +1,6 @@
 # HookBridge
 
-Polyglot webhook processing platform — three specialized services, each written in the language best suited for its role: PHP receives and validates incoming webhooks, Go processes and dispatches events concurrently, and Python classifies payloads using keyword-based rules.
+Polyglot webhook processing platform - three specialized services, each written in the language best suited for its role: PHP receives and validates incoming webhooks, Go processes and dispatches events concurrently, and Python classifies payloads using keyword-based rules.
 
 ---
 
@@ -9,15 +9,15 @@ Polyglot webhook processing platform — three specialized services, each writte
 ```
 External Service → POST /api/v1/webhooks/{source}
                           ↓
-             PHP (Slim 4) — HMAC validation + persist
+             PHP (Slim 4) - HMAC validation + persist
                           ↓
                      PostgreSQL
                           ↓
-          Go Processor — polls every 3s, dispatches
+          Go Processor - polls every 3s, dispatches
                           ↓
-        Python Classifier — categorizes payload
+        Python Classifier - categorizes payload
                           ↓
-             PostgreSQL — status: processed + category
+             PostgreSQL - status: processed + category
 ```
 
 ---
@@ -35,10 +35,10 @@ External Service → POST /api/v1/webhooks/{source}
 
 ## Tech Stack
 
-- **PHP 8.2** + **Slim 4** — lightweight REST framework
-- **Go 1.23** + **pgx/v5** + **zap** — concurrent processor with structured logging
-- **Ruby 3.3** + **Sinatra** — classification microservice
-- **PostgreSQL 16** — JSONB event storage
+- **PHP 8.2** + **Slim 4** - lightweight REST framework
+- **Go 1.23** + **pgx/v5** + **zap** - concurrent processor with structured logging
+- **Ruby 3.3** + **Sinatra** - classification microservice
+- **PostgreSQL 16** - JSONB event storage
 - **Docker** + **Docker Compose**
 
 ---
@@ -102,18 +102,18 @@ curl -X POST http://localhost:8002/api/v1/webhooks/stripe \
 
 ```
 hookbridge/
-├── receiver/               — PHP Slim 4 API
-│   ├── public/index.php    — entrypoint
+├── receiver/               - PHP Slim 4 API
+│   ├── public/index.php    - entrypoint
 │   ├── src/
 │   │   ├── Controllers/
-│   │   ├── Middleware/     — HMAC validation
+│   │   ├── Middleware/     - HMAC validation
 │   │   ├── Models/
 │   │   └── Database/
 │   └── migrations/
-├── processor/              — Go concurrent worker
+├── processor/              - Go concurrent worker
 │   └── cmd/processor/
 │       └── main.go
-├── classifier/             — Python Flask classifier
+├── classifier/             - Python Flask classifier
 │   ├── app.py
 │   └── requirements.txt
 ├── docker/
