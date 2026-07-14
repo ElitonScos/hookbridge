@@ -1,6 +1,6 @@
 # HookBridge
 
-Polyglot webhook processing platform - three specialized services, each written in the language best suited for its role: PHP receives and validates incoming webhooks, Go processes and dispatches events concurrently, and Python classifies payloads using keyword-based rules.
+Polyglot webhook processing platform three specialized services, each written in the language best suited for its role: PHP receives and validates incoming webhooks, Go processes and dispatches events concurrently, and Python classifies payloads using keyword-based rules.
 
 ---
 
